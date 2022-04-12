@@ -27,19 +27,18 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
     public List<Order> findAllByString(OrderSearch orderSearch) {
-
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
 
         // 주문 상태 검색
         if (orderSearch.getOrderStatus() != null) {
             if (isFirstCondition) {
-                jpql += "where";
+                jpql += " where";
                 isFirstCondition = false;
             } else {
-                jpql += "and";
+                jpql += " and";
             }
-            jpql += "o.status = :status";
+            jpql += " o.status = :status";
         }
 
         //회원 이름 검색
